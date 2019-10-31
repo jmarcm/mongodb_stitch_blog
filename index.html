@@ -55,11 +55,11 @@
     function displayComments() {
         console.log("display comments")
         db.collection("comments")
-            .find({})
+            .find({"comment": { $exists: true } })
             .toArray()
             .then(docs => {
                 const html = docs.map(doc => doc.comment).join("<br/>");
-                console.log("docs", html);
+                console.log(html);
                 document.getElementById("comments").innerHTML = html;
             });
     }
